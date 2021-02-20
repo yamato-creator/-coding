@@ -1,0 +1,22 @@
+入力例1
+AA
+abdeeAAbAAAbfde
+出力例1
+3
+
+入力例2
+Ji
+JiJiiJiIjiIJjIJi
+出力例2
+4
+
+s = input()
+t = input()
+result = 0
+
+for i in range(len(t) - len(s) + 1):
+    if s == t[i:i+len(s)]:
+        result += 1
+
+print(result)
+

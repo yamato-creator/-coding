@@ -1,0 +1,49 @@
+入力例1
+7
+A 1
+D 6
+C 2
+G 4
+B 70
+A 10
+B 5
+
+出力例1
+B 75
+A 11
+D 6
+G 4
+C 2
+
+入力例2
+3
+G 0
+S 3
+E -2
+
+出力例2
+S 3
+G 0
+E -2
+
+
+n = int(input())
+
+inputs = {}
+result = {}
+
+for i in range(n):
+    tmp = input().split()
+
+    exist = False
+    for key,value in inputs.items():
+        if tmp[0] == key:
+            exist = True
+    if exist:
+        inputs[tmp[0]] = inputs[tmp[0]] + int(tmp[1])
+    else:
+        inputs[tmp[0]] = int(tmp[1])
+
+result = sorted(inputs.items(), key=lambda x:x[1], reverse=True)
+for i in result:
+    print(i[0] + ' ' + str(i[1]))

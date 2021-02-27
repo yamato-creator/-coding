@@ -8,7 +8,7 @@ s = [list(input()) for _ in range(H)]
 if d == "N":
     if m == "L":
         sx -= 1
-        if sy > 0 and s[sy][sx] == ".":
+        if sy >= 0 and s[sy][sx] == ".":
             print("Yes")
         else:
             print("No")
@@ -27,7 +27,7 @@ if d == "W":
             print("No")
     elif m =="R":
         sy -= 1
-        if sy < 0  and s[sy][sx] == ".":
+        if sy >= 0  and s[sy][sx] == ".":
             print("Yes")
         else:
             print("No")
@@ -40,7 +40,7 @@ if d == "S":
             print("No")
     elif m =="R":
         sx -= 1
-        if sy > 0  and s[sy][sx] == ".":
+        if sy >= 0  and s[sy][sx] == ".":
             print("Yes")
         else:
             print("No")
@@ -53,7 +53,7 @@ if d == "E":
             print("No")
     elif m =="R":
         sy -= 1
-        if sy > 0 and s[sy][sx] == ".":
+        if sy >= 0 and s[sy][sx] == ".":
             print("Yes")
         else:
             print("No")

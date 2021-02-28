@@ -1,55 +1,44 @@
-H, W, sy, sx, N = map(int,input().split())
+H, W, sy, sx, N = map(int, input().split())
 d = "N"
-s = [list(input()) for _ in range(H)]
+
+field = []
+for i in range(H):
+    sub_field = []
+    lines = input()
+    for char in lines:
+        sub_field.append(char)
+    field.append(sub_field)
 
 for i in range(N):
-    l = input().split()
-    m = l[0]
-    num = int(l[1])
+    m,num = input().split()
+    num =int(num)
     if d == "N":
         for j in range(num):
             if m == "L":
-                sx = sx - 1
-                if sx >= 0 and s[sy][sx] == ".":
+                if sx == 0:
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                elif field[sy][sx - 1] == "#":
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                else:
+                    sx -= 1
                     d = "W"
-                else:
-                    sx = 0
+
+            else:
+                if sx == W:
                     print(sy, sx)
                     print("Stop")
                     break
-            elif m =="R":
-                sx = sx + 1
-                if sx < W + 1  and s[sy][sx] == ".":
+                elif field[sy][sx + 1] == "#":
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                else:
+                    sx += 1
                     d = "E"
-                else:
-                    sx = W
-                    print(sy, sx)
-                    print("Stop")
-                    break
-        else:
-            print(sy, sx)
-            continue
-        break
-    elif d == "W":
-        for j in range(num):
-            if m == "L":
-                sy = sy + 1
-                if sy < H + 1 and s[sy][sx] == ".":
-                    d = "S"
-                else:
-                    sy = H
-                    print(sy, sx)
-                    print("Stop")
-                    break
-            elif m =="R":
-                sy = sy - 1
-                if sy >= 0  and s[sy][sx] == ".":
-                    d = "N"
-                else:
-                    sy = 0
-                    print(sy, sx)
-                    print("Stop")
-                    break
         else:
             print(sy, sx)
             continue
@@ -57,23 +46,61 @@ for i in range(N):
     elif d == "S":
         for j in range(num):
             if m == "L":
-                sx = sx + 1
-                if sx < W + 1 and s[sy][sx] == ".":
+                if sx == W:
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                elif field[sy][sx + 1] == "#":
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                else:
+                    sx += 1
                     d = "E"
-                else:
-                    sx = W
+
+            else:
+                if sx == 0:
                     print(sy, sx)
                     print("Stop")
                     break
-            elif m =="R":
-                sx = sx - 1
-                if sx >= 0  and s[sy][sx] == ".":
+                elif field[sy][sx - 1] == "#":
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                else:
+                    sx -= 1
                     d = "W"
-                else:
-                    sx = 0
+        else:
+            print(sy, sx)
+            continue
+        break
+    elif d == "W":
+        for j in range(num):
+            if m == "L":
+                if sy == H:
                     print(sy, sx)
                     print("Stop")
                     break
+                elif field[sy + 1][sx] == "#":
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                else:
+                    sy += 1
+                    d = "S"
+
+            else:
+                if sy == 0:
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                elif field[sy - 1][sx] == "#":
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                else:
+                    sy -= 1
+                    d = "N"
         else:
             print(sy, sx)
             continue
@@ -81,22 +108,31 @@ for i in range(N):
     elif d == "E":
         for j in range(num):
             if m == "L":
-                sy = sy - 1
-                if sy >= 0 and s[sy][sx] == ".":
-                    d = "N"
-                else:
-                    sy = 0
-                    print(sy, sx)
-                    print("Stop")
-            elif m =="R":
-                sy = sy + 1
-                if sy < H + 1 and s[sy][sx] == ".":
-                    d = "S"
-                else:
-                    sy = H
+                if sy == 0:
                     print(sy, sx)
                     print("Stop")
                     break
+                elif field[sy - 1][sx] == "#":
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                else:
+                    sy -= 1
+                    d = "N"
+
+            else:
+                if sy == H:
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                elif field[sy + 1][sx] == "#":
+                    print(sy, sx)
+                    print("Stop")
+                    break
+                else:
+                    sy += 1
+                    d = "S"
+
         else:
             print(sy, sx)
             continue

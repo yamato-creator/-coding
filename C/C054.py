@@ -8,5 +8,5 @@ for i in range(len(s)):
         continue
     elif velocity <= (int(s[i][0]) / int(s[i][1])):
         result = "YES"
-        
+
 print(result)
